@@ -46,6 +46,12 @@ public:
 	// make one cell empty
 	void unset(int row, int column);
 
+	// check if there is any collisions originating from a single cell
+	bool valid(int row, int column) const;
+
+	// check if there is any collisions anywhere in the puzzle
+	bool valid() const;
+
 private:
 	std::vector<int8_t> table;
 };

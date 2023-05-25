@@ -97,4 +97,64 @@ std::string Puzzle::toString(RenderFrameArgument render_frame_argument) const {
 	return ss.str();
 }
 
+bool Puzzle::valid(int target_row, int target_column) const {
+	int value = get(target_row, target_column);
+
+	// empty cells don't cause collisions
+	if (value == 0)
+		return true;
+
+	// check the row
+	for (int c = 0; c < PUZZLE_SIZE; ++c) {
+		// skip the target cell itself
+		if (c == target_column)
+			continue;
+
+		// check for collision
+		if (value == get(target_row, c))
+			return false;
+	}
+
+	// check the column
+	for (int r = 0; r < PUZZLE_SIZE; ++r) {
+		// skip the target cell itself
+		if (r == target_row)
+			continue;
+
+		// check for collision
+		if (value == get(r, target_column))
+			return false;
+	}
+
+	// check box
+	int box_row = target_row / BASE_SIZE;
+	int box_column = target_column / BASE_SIZE;
+	for (int c = 0; c < BASE_SIZE; ++c) {
+		for (int r = 0; r < BASE_SIZE; ++r) {
+			int row = box_row * BASE_SIZE + r;
+			int column = box_column * BASE_SIZE + c;
+
+			// skip the target cell itself
+			if (column == target_column && row == target_row)
+				continue;
+
+			// check for collision
+			if (value == get(row, column))
+				return false;
+		}
+	}
+
+	return true;
+}
+
+bool Puzzle::valid() const {
+	for (int row = 0; row < PUZZLE_SIZE; ++row) {
+		for (int column = 0; column < PUZZLE_SIZE; ++column) {
+			if (!valid(row, column))
+				return false;
+		}
+	}
+	return true;
+}
+
 }
