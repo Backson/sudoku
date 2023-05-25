@@ -1,5 +1,6 @@
 #include <iostream>
 #include <list>
+#include <chrono>
 
 #include "Puzzle.hpp"
 
@@ -17,11 +18,20 @@ static const std::string example_puzzle =
 	"6   8 429"
 	"   96 3 8";
 
-list<sudoku::Puzzle> solve(const sudoku::Puzzle &input) {
+struct PerformanceMetrics {
+	size_t max_number_of_candidates = 0;
+	size_t number_of_candidates_checked = 0;
+};
+
+list<sudoku::Puzzle> solve(const sudoku::Puzzle &input, PerformanceMetrics *metrics = nullptr) {
 	// solved puzzles
 	list<sudoku::Puzzle> solved;
 
 	// if the input puzzle is invalid, return an empty list (no solutions)
+	if (metrics) {
+		metrics->number_of_candidates_checked++;
+		metrics->max_number_of_candidates = std::max(metrics->max_number_of_candidates, 1ull);
+	}
 	if (!input.valid())
 		return solved;
 
@@ -33,6 +43,13 @@ list<sudoku::Puzzle> solve(const sudoku::Puzzle &input) {
 
 	// keep working until all puzzles are solved
 	while (candidates.size() > 0) {
+		// performance statistics
+		if (metrics) {
+			metrics->number_of_candidates_checked++;
+			metrics->max_number_of_candidates = std::max(metrics->max_number_of_candidates, candidates.size());
+		}
+
+
 		// remove puzzle from temporary list
 		sudoku::Puzzle puzzle = std::move(candidates.back());
 		candidates.pop_back();
@@ -83,8 +100,29 @@ int main() {
 	cout << puzzle.toString(RenderFrameArgument::Yes) << endl << endl;
 
 	// and solve it
-	auto solutions = solve(puzzle);
-	cout << "Here is the solved puzzle:";
+	PerformanceMetrics metrics;
+
+	typedef chrono::steady_clock clock;
+	auto start = clock::now();
+	auto solutions = solve(puzzle, &metrics);
+	auto end = clock::now();
+	auto duration = end - start;
+	auto nanoseconds = chrono::duration_cast<chrono::nanoseconds>(duration).count();
+	auto seconds = nanoseconds * 1e-9;
+
+	cout << "I solved it in " << seconds * 1e3 << " milliseconds!" << endl;
+	cout << "I checked " << metrics.number_of_candidates_checked << " candidates!" << endl;
+	cout << "I stored up to " << metrics.max_number_of_candidates << " candidates at the same time!" << endl;
+	if (solutions.size() <= 0) {
+		cout << "There are no valid solutions!";
+	}
+	else if (solutions.size() == 1) {
+		cout << "Here is the solution:";
+	}
+	else {
+		cout << "Here are all " << solutions.size() << " valid solutions:";
+	}
+
 	for (const auto & solution : solutions) {
 		cout << endl << endl << solution.toString(RenderFrameArgument::Yes);
 	}
