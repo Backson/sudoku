@@ -9,7 +9,7 @@ class StackSolver : public Solver {
 public:
 	// get all solutions to the unput puzzle.
 	// if the input puzzle is unsolvable or contains conflicts, returns an empty list.
-	std::list<sudoku::Puzzle> solve(const sudoku::Puzzle &input) override;
+	std::list<Puzzle> solve(const Puzzle &input) override;
 
 	// get the number of solution candidates that were checked.
 	int get_num_puzzles_checked() const { return puzzle_counter; }

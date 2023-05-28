@@ -19,11 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="HumanSolver.cpp" />
     <ClCompile Include="StackSolver.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Puzzle.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="HumanSolver.hpp" />
     <ClInclude Include="StackSolver.hpp" />
     <ClInclude Include="Puzzle.hpp" />
     <ClInclude Include="Solver.hpp" />

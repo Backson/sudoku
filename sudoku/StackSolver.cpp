@@ -6,9 +6,9 @@ static constexpr inline int max(int a, int b) {
 	return a > b ? a : b;
 }
 
-std::list<sudoku::Puzzle> StackSolver::solve(const sudoku::Puzzle &input) {
+std::list<Puzzle> StackSolver::solve(const Puzzle &input) {
 	// solved puzzles
-	std::list<sudoku::Puzzle> solutions;
+	std::list<Puzzle> solutions;
 
 	// if the input puzzle is invalid, return an empty list (no solutions)
 	puzzle_counter++;
@@ -17,7 +17,7 @@ std::list<sudoku::Puzzle> StackSolver::solve(const sudoku::Puzzle &input) {
 		return solutions;
 
 	// partially solved puzzles
-	std::list<sudoku::Puzzle> candidates;
+	std::list<Puzzle> candidates;
 
 	// start with a copy of the input puzzle
 	candidates.emplace_back(input);
@@ -29,7 +29,7 @@ std::list<sudoku::Puzzle> StackSolver::solve(const sudoku::Puzzle &input) {
 		max_list_length = max(max_list_length, (int)candidates.size());
 
 		// remove puzzle from temporary list
-		sudoku::Puzzle puzzle = std::move(candidates.back());
+		Puzzle puzzle = std::move(candidates.back());
 		candidates.pop_back();
 
 		// find an empty cell

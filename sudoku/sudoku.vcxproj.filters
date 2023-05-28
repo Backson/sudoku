@@ -4,10 +4,12 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Puzzle.cpp" />
     <ClCompile Include="StackSolver.cpp" />
+    <ClCompile Include="HumanSolver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Puzzle.hpp" />
     <ClInclude Include="Solver.hpp" />
     <ClInclude Include="StackSolver.hpp" />
+    <ClInclude Include="HumanSolver.hpp" />
   </ItemGroup>
 </Project>
