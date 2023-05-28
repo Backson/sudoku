@@ -7,6 +7,7 @@
 #include "StackSolver.hpp"
 #include "HumanSolver.hpp"
 #include "FastSolver.hpp"
+#include "SolvedPuzzleGenerator.hpp"
 
 using namespace std;
 
@@ -100,6 +101,42 @@ void test_fast_solver(const sudoku::Puzzle puzzle) {
 	cout << endl;
 }
 
+void test_solved_puzzle_generator() {
+	std::list<sudoku::Puzzle> puzzles;
+	sudoku::SolvedPuzzleGenerator generator;
+
+	typedef chrono::steady_clock clock;
+	auto start = clock::now();
+
+	for (int i = 0; i < 10; ++i) {
+		auto puzzle = generator.get();
+		puzzles.emplace_back(std::move(puzzle));
+	}
+
+	auto end = clock::now();
+	auto duration = end - start;
+	auto nanoseconds = chrono::duration_cast<chrono::nanoseconds>(duration).count();
+	auto seconds = nanoseconds * 1e-9;
+
+	cout << "Generated " << puzzles.size() << " puzzles in " << seconds * 1e3 << " milliseconds!" << endl;
+
+	if (puzzles.size() <= 0) {
+		cout << "No puzzles were generated!";
+	}
+	else if (puzzles.size() == 1) {
+		cout << "Here is the puzzle:";
+	}
+	else {
+		cout << "Here are all " << puzzles.size() << " puzzles:";
+	}
+
+	for (const auto &puzzle : puzzles) {
+		cout << endl << endl << puzzle.toString(sudoku::RenderFrameArgument::Yes);
+	}
+
+	cout << endl;
+}
+
 int main() {
 	using namespace sudoku;
 
@@ -109,6 +146,7 @@ int main() {
 	// print it back out
 	cout << "Here is your puzzle:" << endl << endl;
 	cout << puzzle.toString(RenderFrameArgument::Yes) << endl << endl;
+
 
 	cout << "Testing the StackSolver:" << endl;
 	test_stack_solver(puzzle);
@@ -120,6 +158,10 @@ int main() {
 
 	cout << "Testing the FastSolver:" << endl;
 	test_fast_solver(puzzle);
+	cout << endl;
+
+	cout << "Testing the SolvedPuzzleGenerator:" << endl;
+	test_solved_puzzle_generator();
 	cout << endl;
 
 	return 0;

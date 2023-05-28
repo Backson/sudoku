@@ -6,11 +6,13 @@
     <ClCompile Include="StackSolver.cpp" />
     <ClCompile Include="HumanSolver.cpp" />
     <ClCompile Include="FastSolver.cpp" />
+    <ClCompile Include="SolvedPuzzleGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Puzzle.hpp" />
     <ClInclude Include="StackSolver.hpp" />
     <ClInclude Include="HumanSolver.hpp" />
     <ClInclude Include="FastSolver.hpp" />
+    <ClInclude Include="SolvedPuzzleGenerator.hpp" />
   </ItemGroup>
 </Project>

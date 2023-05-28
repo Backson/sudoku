@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="FastSolver.cpp" />
     <ClCompile Include="HumanSolver.cpp" />
+    <ClCompile Include="SolvedPuzzleGenerator.cpp" />
     <ClCompile Include="StackSolver.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Puzzle.cpp" />
@@ -28,6 +29,7 @@
   <ItemGroup>
     <ClInclude Include="FastSolver.hpp" />
     <ClInclude Include="HumanSolver.hpp" />
+    <ClInclude Include="SolvedPuzzleGenerator.hpp" />
     <ClInclude Include="StackSolver.hpp" />
     <ClInclude Include="Puzzle.hpp" />
   </ItemGroup>
