@@ -8,6 +8,7 @@
 #include "HumanSolver.hpp"
 #include "FastSolver.hpp"
 #include "SolvedPuzzleGenerator.hpp"
+#include "PuzzleGenerator.hpp"
 
 using namespace std;
 
@@ -137,6 +138,42 @@ void test_solved_puzzle_generator() {
 	cout << endl;
 }
 
+void test_puzzle_generator() {
+	std::list<sudoku::Puzzle> puzzles;
+	sudoku::PuzzleGenerator generator;
+
+	typedef chrono::steady_clock clock;
+	auto start = clock::now();
+
+	for (int i = 0; i < 10; ++i) {
+		auto puzzle = generator.get();
+		puzzles.emplace_back(std::move(puzzle));
+	}
+
+	auto end = clock::now();
+	auto duration = end - start;
+	auto nanoseconds = chrono::duration_cast<chrono::nanoseconds>(duration).count();
+	auto seconds = nanoseconds * 1e-9;
+
+	cout << "Generated " << puzzles.size() << " puzzles in " << seconds * 1e3 << " milliseconds!" << endl;
+
+	if (puzzles.size() <= 0) {
+		cout << "No puzzles were generated!";
+	}
+	else if (puzzles.size() == 1) {
+		cout << "Here is the puzzle:";
+	}
+	else {
+		cout << "Here are all " << puzzles.size() << " puzzles:";
+	}
+
+	for (const auto &puzzle : puzzles) {
+		cout << endl << endl << puzzle.toString(sudoku::RenderFrameArgument::Yes);
+	}
+
+	cout << endl;
+}
+
 int main() {
 	using namespace sudoku;
 
@@ -162,6 +199,10 @@ int main() {
 
 	cout << "Testing the SolvedPuzzleGenerator:" << endl;
 	test_solved_puzzle_generator();
+	cout << endl;
+
+	cout << "Testing the PuzzleGenerator:" << endl;
+	test_puzzle_generator();
 	cout << endl;
 
 	return 0;

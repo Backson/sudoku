@@ -7,6 +7,7 @@
     <ClCompile Include="HumanSolver.cpp" />
     <ClCompile Include="FastSolver.cpp" />
     <ClCompile Include="SolvedPuzzleGenerator.cpp" />
+    <ClCompile Include="PuzzleGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Puzzle.hpp" />
@@ -14,5 +15,6 @@
     <ClInclude Include="HumanSolver.hpp" />
     <ClInclude Include="FastSolver.hpp" />
     <ClInclude Include="SolvedPuzzleGenerator.hpp" />
+    <ClInclude Include="PuzzleGenerator.hpp" />
   </ItemGroup>
 </Project>
