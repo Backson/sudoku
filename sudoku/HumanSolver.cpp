@@ -73,7 +73,7 @@ private:
 	std::vector<uint16_t> box_notes;
 };
 
-std::list<Puzzle> HumanSolver::solve(const Puzzle &input) {
+Puzzle HumanSolver::solve(const Puzzle &input) {
 	Puzzle puzzle = input;
 	Notes notes(input);
 
@@ -136,9 +136,6 @@ std::list<Puzzle> HumanSolver::solve(const Puzzle &input) {
 					notes.mark(r, c, 9);
 					again = true;
 					break;
-				case 0x1FF:
-					// unsolvable, return empty list
-					return std::list<Puzzle>();
 				default:
 					// more than one possibility, keep going...
 					break;
@@ -148,9 +145,7 @@ std::list<Puzzle> HumanSolver::solve(const Puzzle &input) {
 
 	} while (again);
 
-	std::list<Puzzle> solution;
-	solution.push_back(std::move(puzzle));
-	return solution;
+	return puzzle;
 }
 
 }

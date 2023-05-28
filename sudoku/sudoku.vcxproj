@@ -28,7 +28,6 @@
     <ClInclude Include="HumanSolver.hpp" />
     <ClInclude Include="StackSolver.hpp" />
     <ClInclude Include="Puzzle.hpp" />
-    <ClInclude Include="Solver.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

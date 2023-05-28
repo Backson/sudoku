@@ -52,6 +52,12 @@ public:
 	// check if there is any collisions anywhere in the puzzle
 	bool valid() const;
 
+	// returns true, iff every cell in the puzzle contains a number.
+	bool full() const;
+
+	// returns the number of empty cells in the puzzle
+	int count_empty_cells() const;
+
 private:
 	std::vector<int8_t> table;
 };

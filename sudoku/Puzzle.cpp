@@ -157,4 +157,26 @@ bool Puzzle::valid() const {
 	return true;
 }
 
+bool Puzzle::full() const {
+	for (int row = 0; row < PUZZLE_SIZE; ++row) {
+		for (int column = 0; column < PUZZLE_SIZE; ++column) {
+			if (get(row, column) == 0)
+				return false;
+		}
+	}
+	return true;
+}
+
+int Puzzle::count_empty_cells() const {
+	int counter = 0;
+
+	for (int row = 0; row < PUZZLE_SIZE; ++row) {
+		for (int column = 0; column < PUZZLE_SIZE; ++column) {
+			if (get(row, column) == 0)
+				counter++;
+		}
+	}
+	return counter;
+}
+
 }

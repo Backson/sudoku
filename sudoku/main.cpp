@@ -25,28 +25,20 @@ void test_human_solver(const sudoku::Puzzle puzzle) {
 	typedef chrono::steady_clock clock;
 	auto start = clock::now();
 	sudoku::HumanSolver solver;
-	auto solutions = solver.solve(puzzle);
+	auto solution = solver.solve(puzzle);
 	auto end = clock::now();
 	auto duration = end - start;
 	auto nanoseconds = chrono::duration_cast<chrono::nanoseconds>(duration).count();
 	auto seconds = nanoseconds * 1e-9;
 
 	cout << "I solved it in " << seconds * 1e3 << " milliseconds!" << endl;
-	if (solutions.size() <= 0) {
-		cout << "There are no valid solutions!";
-	}
-	else if (solutions.size() == 1) {
-		cout << "Here is the solution:";
-	}
-	else {
-		cout << "Here are all " << solutions.size() << " valid solutions:";
-	}
+	if (!solution.valid())
+		cout << "Unfortunately, the solution contains errors!" << endl;
+	if (!solution.full())
+		cout << "Unfortunately, the solution contains " << solution.count_empty_cells() << " empty cells!" << endl;
+	cout << "Here is the solution:";
 
-	for (const auto &solution : solutions) {
-		cout << endl << endl << solution.toString(sudoku::RenderFrameArgument::Yes);
-	}
-
-	cout << endl;
+	cout << endl << endl << solution.toString(sudoku::RenderFrameArgument::Yes) << endl;
 }
 
 void test_stack_solver(const sudoku::Puzzle puzzle) {
