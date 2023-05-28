@@ -5,10 +5,12 @@
     <ClCompile Include="Puzzle.cpp" />
     <ClCompile Include="StackSolver.cpp" />
     <ClCompile Include="HumanSolver.cpp" />
+    <ClCompile Include="FastSolver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Puzzle.hpp" />
     <ClInclude Include="StackSolver.hpp" />
     <ClInclude Include="HumanSolver.hpp" />
+    <ClInclude Include="FastSolver.hpp" />
   </ItemGroup>
 </Project>
