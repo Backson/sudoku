@@ -15,19 +15,25 @@ static constexpr inline int get_box_number(int row, int column) {
 class Notes {
 public:
 	// Initialize empty, i.e. all numbers are valid for all cells
-	Notes() :
-		row_notes(Puzzle::PUZZLE_SIZE, 0),
-		column_notes(Puzzle::PUZZLE_SIZE, 0),
-		box_notes(Puzzle::PUZZLE_SIZE, 0)
-	{}
+	Notes()
+	{
+		reset();
+	}
 
 	// Initialize with markings according to the given puzzle.
-	Notes(const Puzzle &input) :
-		row_notes(Puzzle::PUZZLE_SIZE, 0),
-		column_notes(Puzzle::PUZZLE_SIZE, 0),
-		box_notes(Puzzle::PUZZLE_SIZE, 0)
+	Notes(const Puzzle &input)
 	{
+		reset();
 		mark(input);
+	}
+
+	// Remove all marks, i.e. all numbers are valid for all cells again
+	void reset() {
+		for (int i = 0; i < Puzzle::PUZZLE_SIZE; ++i) {
+			row_notes[i] = 0;
+			column_notes[i] = 0;
+			box_notes[i] = 0;
+		}
 	}
 
 	// Mark all numbers in the puzzle
@@ -68,9 +74,9 @@ private:
 	// for number 9, i.e. 0b1_0000_0000.
 	// To get possible numbers for a cell, get the three corresponding
 	// elements from the vectors and bitwise-or them together.
-	std::vector<uint16_t> row_notes;
-	std::vector<uint16_t> column_notes;
-	std::vector<uint16_t> box_notes;
+	uint16_t row_notes[Puzzle::PUZZLE_SIZE];
+	uint16_t column_notes[Puzzle::PUZZLE_SIZE];
+	uint16_t box_notes[Puzzle::PUZZLE_SIZE];
 };
 
 Puzzle MaskSolver::solve(const Puzzle &input) {
@@ -81,8 +87,8 @@ Puzzle MaskSolver::solve(const Puzzle &input) {
 	do {
 		again = false;
 
-		for (int c = 0; c < Puzzle::PUZZLE_SIZE; ++c) {
-			for (int r = 0; r < Puzzle::PUZZLE_SIZE; ++r) {
+		for (int r = 0; r < Puzzle::PUZZLE_SIZE; ++r) {
+			for (int c = 0; c < Puzzle::PUZZLE_SIZE; ++c) {
 				if (puzzle.get(r, c) != 0)
 					continue;
 				// Each bit in the bitfield indicates a number that is already used-up

@@ -38,13 +38,19 @@ public:
 	void clear();
 
 	// get the content of a cell
-	int8_t get(int row, int column) const;
+	int8_t get(int row, int column) const {
+		return table[column + row * PUZZLE_SIZE];
+	}
 
 	// set one cell to a particular number
-	void set(int row, int column, int8_t value);
+	void set(int row, int column, int8_t value) {
+		table[column + row * PUZZLE_SIZE] = value;
+	}
 
 	// make one cell empty
-	void unset(int row, int column);
+	void unset(int row, int column) {
+		table[column + row * PUZZLE_SIZE] = 0;
+	}
 
 	// check if there is any collisions originating from a single cell
 	bool valid(int row, int column) const;

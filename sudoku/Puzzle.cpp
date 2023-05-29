@@ -18,18 +18,6 @@ void Puzzle::clear() {
 	}
 }
 
-int8_t Puzzle::get(int row, int column) const {
-	return table[column + row * PUZZLE_SIZE];
-}
-
-void Puzzle::set(int row, int column, int8_t value) {
-	table[column + row * PUZZLE_SIZE] = value;
-}
-
-void Puzzle::unset(int row, int column) {
-	set(row, column, 0);
-}
-
 Puzzle Puzzle::fromString(const std::string &s) {
 	int table_index = 0;
 	int string_index = 0;

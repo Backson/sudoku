@@ -138,14 +138,14 @@ void test_solved_puzzle_generator() {
 	cout << endl;
 }
 
-void test_puzzle_generator() {
+void test_puzzle_generator(int num = 10) {
 	std::list<sudoku::Puzzle> puzzles;
-	sudoku::PuzzleGenerator generator;
+	sudoku::PuzzleGenerator generator(42);
 
 	typedef chrono::steady_clock clock;
 	auto start = clock::now();
 
-	for (int i = 0; i < 10; ++i) {
+	for (int i = 0; i < num; ++i) {
 		auto puzzle = generator.get();
 		puzzles.emplace_back(std::move(puzzle));
 	}
@@ -183,7 +183,7 @@ int main() {
 	// print it back out
 	cout << "Here is your puzzle:" << endl << endl;
 	cout << puzzle.toString(RenderFrameArgument::Yes) << endl << endl;
-
+	/*
 
 	cout << "Testing the StackSolver:" << endl;
 	test_stack_solver(puzzle);
@@ -201,8 +201,10 @@ int main() {
 	test_solved_puzzle_generator();
 	cout << endl;
 
+	*/
+
 	cout << "Testing the PuzzleGenerator:" << endl;
-	test_puzzle_generator();
+	test_puzzle_generator(50);
 	cout << endl;
 
 	return 0;
