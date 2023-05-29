@@ -1,6 +1,6 @@
 #include "FastSolver.hpp"
 
-#include "HumanSolver.hpp"
+#include "MaskSolver.hpp"
 
 namespace sudoku {
 
@@ -24,9 +24,8 @@ std::list<Puzzle> FastSolver::solve(const Puzzle &input) {
 		Puzzle puzzle = std::move(candidates.back());
 		candidates.pop_back();
 
-		// fill in as many numbers as we can using the HumanSolver strategy
-		HumanSolver human_solver;
-		puzzle = human_solver.solve(puzzle);
+		// fill in as many numbers as we can using the MaskSolver strategy
+		puzzle = MaskSolver().solve(puzzle);
 
 		// find an empty cell
 		int row;

@@ -1,4 +1,4 @@
-#include "HumanSolver.hpp"
+#include "MaskSolver.hpp"
 
 #include <vector>
 
@@ -73,7 +73,7 @@ private:
 	std::vector<uint16_t> box_notes;
 };
 
-Puzzle HumanSolver::solve(const Puzzle &input) {
+Puzzle MaskSolver::solve(const Puzzle &input) {
 	Puzzle puzzle = input;
 	Notes notes(input);
 

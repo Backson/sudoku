@@ -5,7 +5,7 @@
 #include "Puzzle.hpp"
 
 #include "StackSolver.hpp"
-#include "HumanSolver.hpp"
+#include "MaskSolver.hpp"
 #include "FastSolver.hpp"
 #include "SolvedPuzzleGenerator.hpp"
 #include "PuzzleGenerator.hpp"
@@ -54,10 +54,10 @@ void test_stack_solver(const sudoku::Puzzle puzzle) {
 	cout << endl;
 }
 
-void test_human_solver(const sudoku::Puzzle puzzle) {
+void test_mask_solver(const sudoku::Puzzle puzzle) {
 	typedef chrono::steady_clock clock;
 	auto start = clock::now();
-	sudoku::HumanSolver solver;
+	sudoku::MaskSolver solver;
 	auto solution = solver.solve(puzzle);
 	auto end = clock::now();
 	auto duration = end - start;
@@ -189,8 +189,8 @@ int main() {
 	test_stack_solver(puzzle);
 	cout << endl;
 
-	cout << "Testing the HumanSolver:" << endl;
-	test_human_solver(puzzle);
+	cout << "Testing the MaskSolver:" << endl;
+	test_mask_solver(puzzle);
 	cout << endl;
 
 	cout << "Testing the FastSolver:" << endl;

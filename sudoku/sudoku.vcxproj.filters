@@ -4,7 +4,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Puzzle.cpp" />
     <ClCompile Include="StackSolver.cpp" />
-    <ClCompile Include="HumanSolver.cpp" />
+    <ClCompile Include="MaskSolver.cpp" />
     <ClCompile Include="FastSolver.cpp" />
     <ClCompile Include="SolvedPuzzleGenerator.cpp" />
     <ClCompile Include="PuzzleGenerator.cpp" />
@@ -12,7 +12,7 @@
   <ItemGroup>
     <ClInclude Include="Puzzle.hpp" />
     <ClInclude Include="StackSolver.hpp" />
-    <ClInclude Include="HumanSolver.hpp" />
+    <ClInclude Include="MaskSolver.hpp" />
     <ClInclude Include="FastSolver.hpp" />
     <ClInclude Include="SolvedPuzzleGenerator.hpp" />
     <ClInclude Include="PuzzleGenerator.hpp" />

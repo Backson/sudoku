@@ -6,8 +6,8 @@
 
 namespace sudoku {
 
-// A combination of the HumanSolver and the StackSolver. It should be very fast (like
-// the HumanSolver) and always return all soltions (like the StackSolver).
+// A combination of the MaskSolver and the StackSolver. It should be very fast (like
+// the MaskSolver) and always return all solutions (like the StackSolver).
 class FastSolver {
 public:
 	// get all solutions to the unput puzzle.

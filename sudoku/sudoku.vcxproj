@@ -20,7 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FastSolver.cpp" />
-    <ClCompile Include="HumanSolver.cpp" />
+    <ClCompile Include="MaskSolver.cpp" />
     <ClCompile Include="PuzzleGenerator.cpp" />
     <ClCompile Include="SolvedPuzzleGenerator.cpp" />
     <ClCompile Include="StackSolver.cpp" />
@@ -29,7 +29,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FastSolver.hpp" />
-    <ClInclude Include="HumanSolver.hpp" />
+    <ClInclude Include="MaskSolver.hpp" />
     <ClInclude Include="PuzzleGenerator.hpp" />
     <ClInclude Include="SolvedPuzzleGenerator.hpp" />
     <ClInclude Include="StackSolver.hpp" />
