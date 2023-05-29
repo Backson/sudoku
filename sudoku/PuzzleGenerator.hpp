@@ -4,19 +4,20 @@
 
 namespace sudoku {
 
-// generate a random, solved puzzle
+// generate a random puzzle
 class PuzzleGenerator {
 public:
-	// initialize with non-deterministic randomness
+	// Initialize with non-deterministic randomness.
 	PuzzleGenerator() = default;
 
-	// initialize with specific seed
-	// useful for reproducable results, like in tests
+	// Initialize with specific seed.
+	// Useful for reproducable results, like in tests.
 	PuzzleGenerator(uint32_t seed) :
 		seed(seed), is_seeded(true)
 	{}
 
-	// return a random puzzle.
+	// produce a new puzzle.
+	// This is relatively computationally expensive.
 	Puzzle get();
 
 private:
