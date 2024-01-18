@@ -42,9 +42,19 @@ public:
 		return table[column + row * PUZZLE_SIZE];
 	}
 
+	// get the content of a cell
+	int8_t get(int index) const {
+		return table[index];
+	}
+
 	// set one cell to a particular number
 	void set(int row, int column, int8_t value) {
 		table[column + row * PUZZLE_SIZE] = value;
+	}
+
+	// set one cell to a particular number
+	void set(int index, int8_t value) {
+		table[index] = value;
 	}
 
 	// make one cell empty
@@ -52,8 +62,18 @@ public:
 		table[column + row * PUZZLE_SIZE] = 0;
 	}
 
+	// make one cell empty
+	void unset(int index) {
+		table[index] = 0;
+	}
+
 	// check if there is any collisions originating from a single cell
 	bool valid(int row, int column) const;
+
+	// check if there is any collisions originating from a single cell
+	bool valid(int index) const {
+		return valid(index / PUZZLE_SIZE, index % PUZZLE_SIZE);
+	}
 
 	// check if there is any collisions anywhere in the puzzle
 	bool valid() const;

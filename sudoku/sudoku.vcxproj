@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DepthSearchSolver.cpp" />
     <ClCompile Include="FastSolver.cpp" />
     <ClCompile Include="MaskSolver.cpp" />
     <ClCompile Include="PuzzleGenerator.cpp" />
@@ -28,6 +29,7 @@
     <ClCompile Include="Puzzle.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DepthSearchSolver.hpp" />
     <ClInclude Include="FastSolver.hpp" />
     <ClInclude Include="MaskSolver.hpp" />
     <ClInclude Include="PuzzleGenerator.hpp" />

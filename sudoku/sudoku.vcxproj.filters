@@ -8,6 +8,7 @@
     <ClCompile Include="FastSolver.cpp" />
     <ClCompile Include="SolvedPuzzleGenerator.cpp" />
     <ClCompile Include="PuzzleGenerator.cpp" />
+    <ClCompile Include="DepthSearchSolver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Puzzle.hpp" />
@@ -16,5 +17,6 @@
     <ClInclude Include="FastSolver.hpp" />
     <ClInclude Include="SolvedPuzzleGenerator.hpp" />
     <ClInclude Include="PuzzleGenerator.hpp" />
+    <ClInclude Include="DepthSearchSolver.hpp" />
   </ItemGroup>
 </Project>
