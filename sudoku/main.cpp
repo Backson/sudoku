@@ -174,16 +174,66 @@ void test_puzzle_generator(int num = 10) {
 	cout << endl;
 }
 
+template <typename T>
+void benchmark_one(const std::list<sudoku::Puzzle> &puzzles) {
+	using clock = chrono::steady_clock;
+	T solver;
+
+	auto start = clock::now();
+
+	for (const auto &puzzle : puzzles) {
+		auto solution = solver.solve(puzzle);
+	}
+
+	auto end = clock::now();
+	auto duration = end - start;
+	auto nanoseconds = chrono::duration_cast<chrono::nanoseconds>(duration).count();
+	auto seconds = nanoseconds * 1e-9;
+
+	cout << "I solved it in " << seconds * 1e3 << " milliseconds!" << endl;
+}
+
+void benchmark(int num = 10) {
+	using clock = chrono::steady_clock;
+	std::list<sudoku::Puzzle> puzzles;
+
+	{
+		sudoku::PuzzleGenerator generator(42);
+
+		auto start = clock::now();
+
+		for (int i = 0; i < num; ++i) {
+			auto puzzle = generator.get();
+			puzzles.emplace_back(std::move(puzzle));
+		}
+
+		auto end = clock::now();
+		auto duration = end - start;
+		auto nanoseconds = chrono::duration_cast<chrono::nanoseconds>(duration).count();
+		auto seconds = nanoseconds * 1e-9;
+
+		cout << "Generated " << puzzles.size() << " puzzles in " << seconds * 1e3 << " milliseconds!" << endl;
+	}
+
+	cout << "Benchmarking MaskSolver:" << endl;
+	benchmark_one<sudoku::MaskSolver>(puzzles);
+
+	cout << "Benchmarking StackSolver:" << endl;
+	benchmark_one<sudoku::StackSolver>(puzzles);
+
+	cout << "Benchmarking FastSolver:" << endl;
+	benchmark_one<sudoku::FastSolver>(puzzles);
+}
+
 int main() {
 	using namespace sudoku;
 
 	// parse the puzzle
 	auto puzzle = Puzzle::fromString(example_puzzle);
-
+	/*
 	// print it back out
 	cout << "Here is your puzzle:" << endl << endl;
 	cout << puzzle.toString(RenderFrameArgument::Yes) << endl << endl;
-	/*
 
 	cout << "Testing the StackSolver:" << endl;
 	test_stack_solver(puzzle);
@@ -201,11 +251,12 @@ int main() {
 	test_solved_puzzle_generator();
 	cout << endl;
 
-	*/
-
 	cout << "Testing the PuzzleGenerator:" << endl;
 	test_puzzle_generator(50);
 	cout << endl;
+	*/
+
+	benchmark(4);
 
 	return 0;
 }
